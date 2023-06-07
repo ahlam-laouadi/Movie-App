@@ -1,17 +1,39 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+ReactDOM.render(<App />, document.getElementById("root"));
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+serviceWorkerRegistration.register();
+// Diable input from user
+(document.onkeydown = function (event) {
+  if (event.keyCode == 123) {
+    return false;
+  } else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) {
+    return false;
+  } else if (event.ctrlKey && event.shiftKey && event.keyCode == 67) {
+    return false;
+  } else if (event.ctrlKey && event.shiftKey && event.keyCode == 86) {
+    return false;
+  } else if (event.ctrlKey && event.shiftKey && event.keyCode == 117) {
+    return false;
+  } else if (event.ctrlKey && event.keyCode == 85) {
+    return false;
+  }
+}),
+  false;
+if (document.addEventListener) {
+  document.addEventListener(
+    "contextmenu",
+    function (e) {
+      e.preventDefault();
+    },
+    false
+  );
+} else {
+  document.attachEvent("oncontextmenu", function () {
+    window.event.returnValue = false;
+  });
+}
